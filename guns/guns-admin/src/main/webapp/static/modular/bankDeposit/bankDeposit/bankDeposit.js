@@ -85,6 +85,28 @@ BankDeposit.delete = function () {
     }
 };
 
+//导出
+BankDeposit.export = function download() {
+    var oReq = new XMLHttpRequest();
+    var condition = document.getElementById("condition").value;
+    var begin = document.getElementById("begin").value;
+    var end = document.getElementById("end").value;
+    oReq.open("GET", Feng.ctxPath + "/bankDeposit/export?condition=" + condition + "&begin=" + begin + "&end=" + end, true);
+    oReq.responseType = "blob";
+    oReq.onload = function (oEvent) {
+        var blob = oReq.response;
+        var filename = "银行流水.xlsx";
+        var a = document.createElement('a');
+        blob.type = "application/excel";
+        var url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = filename;
+        a.click();
+        window.URL.revokeObjectURL(url);
+    };
+    oReq.send();
+};
+
 /**
  * 查询财务流水模块列表
  */
