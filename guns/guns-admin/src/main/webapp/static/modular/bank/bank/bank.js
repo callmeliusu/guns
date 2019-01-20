@@ -15,7 +15,7 @@ Bank.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
-        {title: '银行卡', field: 'bankNo', visible: true, align: 'center', valign: 'middle'},
+        {title: '银行卡', field: 'bankNo', visible: true, align: 'center', valign: 'middle',formatter: operateFormatter},
         {title: '收入', field: 'income', visible: true, align: 'center', valign: 'middle'},
         {title: '支出', field: 'pay', visible: true, align: 'center', valign: 'middle'},
         {title: '余额', field: 'balance', visible: true, align: 'center', valign: 'middle'},
@@ -24,6 +24,12 @@ Bank.initColumn = function () {
     ];
 };
 
+function operateFormatter(value, row, index) {
+    var url = encodeURI(Feng.ctxPath + '/bankDeposit'  + '?condition=' + value);
+    return [
+        '<a href = ' + url + '>' + value + '</a>'
+    ].join('');
+}
 /**
  * 检查是否选中
  */

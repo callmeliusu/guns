@@ -15,13 +15,22 @@ Customer.initColumn = function () {
     return [
         {field: 'selectItem', radio: false, checkbox: true},
         {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
-        {title: '客户名称', field: 'name', visible: true, align: 'center', valign: 'middle'},
+        {title: '客户名称', field: 'name', visible: true, align: 'center', valign: 'middle', formatter: operateFormatter},
         {title: '手机号', field: 'phone', visible: true, align: 'center', valign: 'middle'},
         {title: '余额', field: 'balance', visible: true, align: 'center', valign: 'middle'},
         {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
         {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}
     ];
 };
+
+
+
+function operateFormatter(value, row, index) {
+    var url = encodeURI(Feng.ctxPath + '/order'  + '?condition=' + value);
+    return [
+        '<a href = ' + url + '>' + value + '</a>'
+    ].join('');
+}
 
 /**
  * 检查是否选中

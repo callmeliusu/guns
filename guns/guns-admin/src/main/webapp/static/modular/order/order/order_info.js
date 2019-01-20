@@ -152,7 +152,58 @@ function uploadComplete(evt) {
     OrderInfoDlg.close();
 }
 
-
+function computerProfit(){
+    var income =  $("#income").val();
+    var channelMoney =  $("#channelMoney").val();
+    if(!isNaN(income) && !isNaN(channelMoney)){
+        $("#profit").val(income - channelMoney);
+    }
+}
 $(function () {
+    //下达量级 发生变化  收入 = 下单量级 * 客户单价 income = order * customerPrice
+    $("#order").change(function(){
+        var order =  $("#order").val();
+        var customerPrice =  $("#customerPrice").val();
+        if(!isNaN(order) && !isNaN(customerPrice)){
+            $("#income").val(order * customerPrice);
+            computerProfit();
+        }
+    });
+    //客户单价
+    $("#customerPrice").change(function(){
+        var order =  $("#order").val();
+        var customerPrice =  $("#customerPrice").val();
+        if(!isNaN(order) && !isNaN(customerPrice)){
+            $("#income").val(order * customerPrice);
+            computerProfit();
+        }
+    });
+
+    //渠道金额 channelMoney = 渠道量级 channelOrder *渠道单价 channelPrice
+    $("#channelPrice").change(function(){
+        var channelOrder =  $("#channelOrder").val();
+        var channelPrice =  $("#channelPrice").val();
+        if(!isNaN(channelOrder) && !isNaN(channelPrice)){
+            $("#channelMoney").val(channelOrder * channelPrice);
+            computerProfit();
+        }
+    });
+    $("#channelOrder").change(function(){
+        var channelOrder =  $("#channelOrder").val();
+        var channelPrice =  $("#channelPrice").val();
+        if(!isNaN(channelOrder) && !isNaN(channelPrice)){
+            $("#channelMoney").val(channelOrder * channelPrice);
+            computerProfit();
+        }
+    });
+
+    //利润 profit = income 收入 - 渠道金额 channelMoney
+    $("#income").change(function(){
+        computerProfit();
+    });
+    $("#channelMoney").change(function(){
+        computerProfit();
+    });
+
 
 });

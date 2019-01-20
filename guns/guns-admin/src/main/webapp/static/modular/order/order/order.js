@@ -191,8 +191,16 @@ $(function () {
     begin = timeStamp2String(begin);
     var end = getCurrentMonthLast();
     end = timeStamp2String(end);
-    $("#begin").val(begin);
-    $("#end").val(end);
+    //从URL获取参数
+    var searchUrl =window.location.href;
+    var  conditionData =searchUrl.split("=");
+    var  condition =decodeURI(conditionData[1]);
+    if (condition != null & condition.trim() != ''  & condition != 'undefined') {
+        $("#condition").val(condition);
+    }else{
+        $("#begin").val(begin);
+        $("#end").val(end);
+    }
     var queryData = {};
     queryData['condition'] = $("#condition").val();
     queryData['begin'] = $("#begin").val();

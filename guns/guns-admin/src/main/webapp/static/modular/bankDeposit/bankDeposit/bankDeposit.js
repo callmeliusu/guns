@@ -100,5 +100,18 @@ $(function () {
     var defaultColunms = BankDeposit.initColumn();
     var table = new BSTable(BankDeposit.id, "/bankDeposit/list", defaultColunms);
     table.setPaginationType("client");
+    //从URL获取参数
+    var searchUrl =window.location.href;
+    var  conditionData =searchUrl.split("=");
+    var  condition =decodeURI(conditionData[1]);
+    if (condition != null && condition.trim() != '' && condition != 'undefined') {
+        $("#condition").val(condition);
+    }
+    var queryData = {};
+    queryData['condition'] = $("#condition").val();
+    queryData['begin'] = $("#begin").val();
+    queryData['end'] = $("#end").val();
+    table.setQueryParams(queryData);
+
     BankDeposit.table = table.init();
 });
