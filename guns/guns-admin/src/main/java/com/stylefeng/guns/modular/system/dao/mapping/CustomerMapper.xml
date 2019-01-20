@@ -7,6 +7,9 @@
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="address" property="address"/>
+        <result column="touchName" property="touchName"/>
         <result column="charge" property="charge"/>
         <result column="cost" property="cost"/>
         <result column="balance" property="balance"/>
@@ -16,7 +19,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, phone,charge,cost,  balance, updateTime, createTime
+        id, name, phone, email, address, touchName, charge,cost,  balance, updateTime, createTime
     </sql>
 
 </mapper>

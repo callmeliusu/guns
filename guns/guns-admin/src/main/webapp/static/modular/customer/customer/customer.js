@@ -17,6 +17,9 @@ Customer.initColumn = function () {
         {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
         {title: '客户名称', field: 'name', visible: true, align: 'center', valign: 'middle', formatter: operateFormatter},
         {title: '手机号', field: 'phone', visible: true, align: 'center', valign: 'middle'},
+        {title: '邮箱', field: 'email', visible: true, align: 'center', valign: 'middle'},
+        {title: '公司地址', field: 'address', visible: true, align: 'center', valign: 'middle'},
+        {title: '对接人', field: 'touchName', visible: true, align: 'center', valign: 'middle'},
         {title: '预付金额', field: 'charge', visible: true, align: 'center', valign: 'middle'},
         {title: '消耗金额', field: 'cost', visible: true, align: 'center', valign: 'middle'},
         {title: '余额', field: 'balance', visible: true, align: 'center', valign: 'middle'},
@@ -26,9 +29,8 @@ Customer.initColumn = function () {
 };
 
 
-
 function operateFormatter(value, row, index) {
-    var url = encodeURI(Feng.ctxPath + '/order'  + '?condition=' + value);
+    var url = encodeURI(Feng.ctxPath + '/order' + '?condition=' + value);
     return [
         '<a href = ' + url + '>' + value + '</a>'
     ].join('');
