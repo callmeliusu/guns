@@ -65,4 +65,15 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
+
+    @Bean
+    public Docket bankApi() {
+        String title = "财务模块";
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName(title)
+                .select()
+                .paths(PathSelectors.regex("/bank/.*"))
+                .paths(PathSelectors.any())
+                .build();
+    }
 }

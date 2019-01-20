@@ -117,6 +117,18 @@ public class BankController extends BaseController {
     }
 
     /**
+     * 获取银行卡列表
+     */
+    @RequestMapping(value = "/bankNoList", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Bank> bankNoList(String bankNo) {
+        EntityWrapper<Bank> wrapper = new EntityWrapper<Bank>();
+        wrapper.like("bankNo", bankNo);
+        List<Bank> banks = bankService.selectList(wrapper);
+        return banks;
+    }
+
+    /**
      * 新增财务模块
      */
     @RequestMapping(value = "/add")
