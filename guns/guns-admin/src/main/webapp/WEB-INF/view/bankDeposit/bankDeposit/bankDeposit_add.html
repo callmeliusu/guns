@@ -7,7 +7,19 @@
 
             <div class="row">
                 <div class="col-sm-6 b-r">
-                    <#input id="bankNo" name="银行卡" underline="true"/>
+                    <label class="col-sm-3 control-label">银行卡</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="bankNo">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    <div class="hr-line-dashed"></div>
                     <#input id="income" name="收入" underline="true"/>
                 </div>
 
@@ -28,5 +40,21 @@
 
     </div>
 </div>
+<script src="${ctxPath}/static/js/plugins/suggest/bootstrap-suggest.min.js"></script>
 <script src="${ctxPath}/static/modular/bankDeposit/bankDeposit/bankDeposit_info.js"></script>
+<script>
+    $('#bankNo').bsSuggest({
+        url: Feng.ctxPath + '/bank/bankNoList?bankNo=',
+        getDataMethod: 'url',
+        effectiveFields: ['balance', 'bankNo'],
+        effectiveFieldsAlias: {balance: '余额', bankNo: '卡号'},
+        showHeader: false,
+        allowNoKeyword: true,
+        multiWord: false,
+        idField: 'id',
+        keyField: 'bankNo'
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        $('#bankNo').val(data.bankNo);
+    });
+</script>
 @}

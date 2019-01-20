@@ -7,6 +7,7 @@ import com.stylefeng.guns.modular.bank.service.IBankService;
 import com.stylefeng.guns.modular.bankDeposit.service.IBankDepositService;
 import com.stylefeng.guns.modular.system.model.Bank;
 import com.stylefeng.guns.modular.system.model.BankDeposit;
+import com.stylefeng.guns.modular.system.model.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,11 +122,14 @@ public class BankController extends BaseController {
      */
     @RequestMapping(value = "/bankNoList", method = RequestMethod.GET)
     @ResponseBody
-    public List<Bank> bankNoList(String bankNo) {
+    public Data bankNoList(String bankNo) {
         EntityWrapper<Bank> wrapper = new EntityWrapper<Bank>();
         wrapper.like("bankNo", bankNo);
         List<Bank> banks = bankService.selectList(wrapper);
-        return banks;
+
+        Data data = new Data();
+        data.setValue(banks);
+        return data;
     }
 
     /**
