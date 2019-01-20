@@ -145,10 +145,6 @@ public class OrderController extends BaseController {
          * 实际利润
          */
         BigDecimal realProfit = new BigDecimal(0);
-        /**
-         * 我方统计
-         */
-        BigDecimal statistic = new BigDecimal(0);
 
         for (Order orderD : orders) {
             if (orderD.getOrder() != null) {
@@ -205,6 +201,20 @@ public class OrderController extends BaseController {
         if (StringUtils.isEmpty(order.getCustomerName())) {
             throw new Exception("请输入客户名称");
         }
+        //从客户模块找到客户
+        EntityWrapper<Customer> wrapper = new EntityWrapper<Customer>();
+        wrapper.eq("name", order.getCustomerName());
+        List<Customer> customers = customerService.selectList(wrapper);
+        if (CollectionUtils.isEmpty(customers)) {
+            throw new Exception("未找到客户：" + order.getCustomerName());
+        }
+
+        //把客户的钱找回来
+        Customer customer = customers.get(0);
+        customer.setCost(customer.getCost().add(order.getIncome()));
+        customer.setBalance(customer.getBalance().subtract(order.getIncome()));
+        customerService.updateById(customer);
+
         orderService.insert(order);
         return SUCCESS_TIP;
     }
@@ -214,7 +224,22 @@ public class OrderController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer orderId) {
+    public Object delete(@RequestParam Integer orderId) throws Exception {
+        Order order = orderService.selectById(orderId);
+        //从客户模块找到客户
+        EntityWrapper<Customer> wrapper = new EntityWrapper<Customer>();
+        wrapper.eq("name", order.getCustomerName());
+        List<Customer> customers = customerService.selectList(wrapper);
+        if (CollectionUtils.isEmpty(customers)) {
+            throw new Exception("未找到客户：" + order.getCustomerName());
+        }
+
+        //把客户的钱找回来
+        Customer customer = customers.get(0);
+        customer.setCost(customer.getCost().subtract(order.getIncome()));
+        customer.setBalance(customer.getBalance().add(order.getIncome()));
+        customerService.updateById(customer);
+
         orderService.deleteById(orderId);
         return SUCCESS_TIP;
     }

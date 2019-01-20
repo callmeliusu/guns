@@ -4,6 +4,7 @@ import com.stylefeng.guns.modular.system.model.BankDeposit;
 import com.stylefeng.guns.modular.system.dao.BankDepositMapper;
 import com.stylefeng.guns.modular.bankDeposit.service.IBankDepositService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BankDepositServiceImpl extends ServiceImpl<BankDepositMapper, BankDeposit> implements IBankDepositService {
 
+    @Autowired
+    private BankDepositMapper bankDepositMapper;
+
+    @Override
+    public void updateName(String afterName, String beforeName) {
+        bankDepositMapper.updateName(afterName, beforeName);
+    }
 }

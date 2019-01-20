@@ -19,4 +19,7 @@
         id, bankNo, income, pay,balance, data, createTime, updateTime
     </sql>
 
+    <delete id="updateName">
+        UPDATE sys_bank_deposit SET bankNo = #{afterName} where bankNo = #{beforeName}
+    </delete>
 </mapper>
