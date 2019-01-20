@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workbook>
+    <worksheet name="Sheet1">
+        <section startRow="0" endRow="0">
+        </section>
+        <loop startRow="1" endRow="1" items="orderData" var="order"
+              varType="com.stylefeng.guns.modular.system.model.OrderDTO">
+            <section startRow="1" endRow="1">
+                <mapping row="1" col="0">order.dataString</mapping>
+                <mapping row="1" col="1">order.customerName</mapping>
+                <mapping row="1" col="2">order.order</mapping>
+                <mapping row="1" col="3">order.channelOrder</mapping>
+                <mapping row="1" col="4">order.customerPrice</mapping>
+                <mapping row="1" col="5">order.channelPrice</mapping>
+                <mapping row="1" col="6">order.income</mapping>
+                <mapping row="1" col="7">order.channelMoney</mapping>
+                <mapping row="1" col="8">order.profit</mapping>
+                <mapping row="1" col="9">order.realIncome</mapping>
+                <mapping row="1" col="10">order.realOrder</mapping>
+                <mapping row="1" col="11">order.realProfit</mapping>
+                <mapping row="1" col="12">order.statistic</mapping>
+            </section>
+            <loopbreakcondition>
+                <rowcheck offset="0">
+                    <cellcheck offset="0"></cellcheck>
+                </rowcheck>
+            </loopbreakcondition>
+        </loop>
+    </worksheet>
+</workbook>

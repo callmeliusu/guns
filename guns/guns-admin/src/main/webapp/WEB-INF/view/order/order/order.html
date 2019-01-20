@@ -1,0 +1,53 @@
+@layout("/common/_container.html"){
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>收支模块管理</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="row row-lg">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <#NameCon id="condition" name="名称" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="begin" name="开始时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#TimeCon id="end" name="结束时间" isTime="false" pattern="YYYY-MM-DD" />
+                            </div>
+                            <div class="col-sm-3">
+                                <#button name="搜索" icon="fa-search" clickFun="Order.search()"/>
+                            </div>
+                        </div>
+                        <div class="hidden-xs" id="OrderTableToolbar" role="group">
+                            @if(shiro.hasPermission("/order/add")){
+                            <#button name="添加" icon="fa-plus" clickFun="Order.openAddOrder()"/>
+                            @}
+                            @if(shiro.hasPermission("/order/update")){
+                            <#button name="修改" icon="fa-edit" clickFun="Order.openOrderDetail()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/order/delete")){
+                            <#button name="删除" icon="fa-remove" clickFun="Order.delete()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/order/batchDelete")){
+                            <#button name="批量删除" icon="fa-remove" clickFun="Order.batchDelete()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/order/input")){
+                            <#button name="导入" icon="fa-upload" clickFun="Order.input()" space="true"/>
+                            @}
+                            @if(shiro.hasPermission("/order/export")){
+                            <#button name="导出" icon="fa-download" clickFun="Order.export()" space="true"/>
+                            @}
+                        </div>
+                        <#table id="OrderTable"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/order/order/order.js"></script>
+@}

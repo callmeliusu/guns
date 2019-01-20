@@ -1,0 +1,47 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <input type="hidden" id="id" value="${item.id}">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="id" name="id" value="${item.id}" underline="true" readonly="true"/>
+                    <!--<#input id="data" name="日期" type="date" value="${item.data}" underline="true"/>-->
+                    <#input id="data" name="日期" underline="true" type="date"
+                            value="${item.data}"
+                            clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
+                    <!--<#input id="customerId" name="客户id" value="${item.customerId}" underline="true"/>-->
+                    <#input id="customerName" name="客户名称" value="${item.customerName}" underline="true"/>
+                    <#input id="order" name="下单量级" value="${item.order}" underline="true"/>
+                    <#input id="channelOrder" name="渠道量级" value="${item.channelOrder}" underline="true"/>
+                    <#input id="customerPrice" name="客户单价" value="${item.customerPrice}" underline="true"/>
+                    <#input id="channelPrice" name="渠道单价" value="${item.channelPrice}" underline="true"/>
+                    <#input id="income" name="收入" value="${item.income}" />
+                </div>
+
+                <div class="col-sm-6">
+                    <#input id="channelMoney" name="渠道金额" value="${item.channelMoney}" underline="true"/>
+                    <#input id="profit" name="利润" value="${item.profit}" underline="true"/>
+                    <#input id="realIncome" name="实际收入" value="${item.realIncome}" underline="true"/>
+                    <#input id="realOrder" name="实际量级" value="${item.realOrder}" underline="true"/>
+                    <#input id="realProfit" name="实际利润" value="${item.realProfit}" underline="true"/>
+                    <#input id="statistic" name="我方统计" value="${item.statistic}" underline="true"/>
+                    <!--<#input id="createTime" name="创建时间" value="${item.createTime}" underline="true"/>-->
+                    <!--<#input id="updateTime" name="更新时间" value="${item.updateTime}" />-->
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="OrderInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="OrderInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/order/order/order_info.js"></script>
+@}
