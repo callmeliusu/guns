@@ -44,6 +44,10 @@ public class BankDeposit extends Model<BankDeposit> {
      */
     private BigDecimal pay;
     /**
+     * 余额
+     */
+    private BigDecimal balance;
+    /**
      * 日期
      */
     private Date data;
@@ -87,6 +91,14 @@ public class BankDeposit extends Model<BankDeposit> {
 
     public void setPay(BigDecimal pay) {
         this.pay = pay;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public Date getData() {

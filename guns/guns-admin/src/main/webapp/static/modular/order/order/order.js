@@ -18,6 +18,7 @@ Order.initColumn = function () {
         {title: '日期', field: 'data', visible: true, align: 'center', valign: 'middle'},
         // {title: '客户id', field: 'customerId', visible: true, align: 'center', valign: 'middle'},
         {title: '客户名称', field: 'customerName', visible: true, align: 'center', valign: 'middle'},
+        {title: '渠道', field: 'channel', visible: true, align: 'center', valign: 'middle'},
         {title: '下单量级', field: 'order', visible: true, align: 'center', valign: 'middle'},
         {title: '渠道量级', field: 'channelOrder', visible: true, align: 'center', valign: 'middle'},
         {title: '客户单价', field: 'customerPrice', visible: true, align: 'center', valign: 'middle'},
@@ -27,8 +28,7 @@ Order.initColumn = function () {
         {title: '利润', field: 'profit', visible: true, align: 'center', valign: 'middle'},
         {title: '实际收入', field: 'realIncome', visible: true, align: 'center', valign: 'middle'},
         {title: '实际量级', field: 'realOrder', visible: true, align: 'center', valign: 'middle'},
-        {title: '实际利润', field: 'realProfit', visible: true, align: 'center', valign: 'middle'},
-        {title: '我方统计', field: 'statistic', visible: true, align: 'center', valign: 'middle'}
+        {title: '实际利润', field: 'realProfit', visible: true, align: 'center', valign: 'middle'}
         // {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
         // {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}
     ];
@@ -39,7 +39,7 @@ Order.initColumn = function () {
  */
 Order.check = function () {
     var selected = $('#' + this.id).bootstrapTable('getSelections');
-    if (selected.length == 0 || selected.length >= 1) {
+    if (selected.length == 0 || selected.length > 1) {
         Feng.info("请先选中表格中的某一记录！");
         return false;
     } else {
@@ -154,6 +154,7 @@ Order.batchDelete = function () {
 Order.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
+    queryData['channel'] = $("#channel").val();
     queryData['begin'] = $("#begin").val();
     queryData['end'] = $("#end").val();
     Order.table.refresh({query: queryData});

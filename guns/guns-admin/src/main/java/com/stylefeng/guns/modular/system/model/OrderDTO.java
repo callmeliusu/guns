@@ -34,6 +34,10 @@ public class OrderDTO implements Serializable {
      */
     private String customerName;
     /**
+     * 渠道
+     */
+    private String channel;
+    /**
      * 下单量级
      */
     private BigDecimal order;
@@ -73,10 +77,7 @@ public class OrderDTO implements Serializable {
      * 实际利润
      */
     private BigDecimal realProfit;
-    /**
-     * 我方统计
-     */
-    private BigDecimal statistic;
+
 
     public Integer getId() {
         return id;
@@ -108,6 +109,14 @@ public class OrderDTO implements Serializable {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     public BigDecimal getOrder() {
@@ -190,11 +199,4 @@ public class OrderDTO implements Serializable {
         this.realProfit = realProfit;
     }
 
-    public BigDecimal getStatistic() {
-        return statistic;
-    }
-
-    public void setStatistic(BigDecimal statistic) {
-        this.statistic = statistic;
-    }
 }

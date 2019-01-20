@@ -49,6 +49,7 @@ OrderInfoDlg.collectData = function () {
         .set('data')
         .set('customerId')
         .set('customerName')
+        .set('channel')
         .set('order')
         .set('channelOrder')
         .set('customerPrice')
@@ -59,7 +60,6 @@ OrderInfoDlg.collectData = function () {
         .set('realIncome')
         .set('realOrder')
         .set('realProfit')
-        .set('statistic')
         .set('createTime')
         .set('updateTime');
 }

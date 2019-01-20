@@ -8,6 +8,7 @@
         <result column="bankNo" property="bankNo"/>
         <result column="income" property="income"/>
         <result column="pay" property="pay"/>
+        <result column="balance" property="balance"/>
         <result column="data" property="data"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
@@ -15,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, bankNo, income, pay, data, createTime, updateTime
+        id, bankNo, income, pay,balance, data, createTime, updateTime
     </sql>
 
 </mapper>

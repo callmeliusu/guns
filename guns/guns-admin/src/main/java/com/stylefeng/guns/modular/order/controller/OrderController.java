@@ -90,9 +90,13 @@ public class OrderController extends BaseController {
      */
     @RequestMapping(value = "/list")
     @ResponseBody
-    public Object list(String condition, Date begin, Date end) {
+    public Object list(String condition,
+                       String channel,
+                       Date begin,
+                       Date end) {
         EntityWrapper<Order> wrapper = new EntityWrapper<Order>();
         wrapper.like("customerName", condition);
+        wrapper.like("channel", channel);
         if (begin != null) {
             wrapper.ge("data", begin);
         }
@@ -177,9 +181,6 @@ public class OrderController extends BaseController {
             if (orderD.getRealProfit() != null) {
                 realProfit = realProfit.add(orderD.getRealProfit());
             }
-            if (orderD.getStatistic() != null) {
-                statistic = statistic.add(orderD.getStatistic());
-            }
         }
         result.setOrder(order);
         result.setChannelOrder(channelOrder);
@@ -191,7 +192,6 @@ public class OrderController extends BaseController {
         result.setRealIncome(realIncome);
         result.setRealOrder(realOrder);
         result.setRealProfit(realProfit);
-        result.setStatistic(statistic);
         orders.add(result);
         return orders;
     }
@@ -302,6 +302,7 @@ public class OrderController extends BaseController {
                             Order order = new Order();
                             order.setData(string2Date(orderDTO.getDataString()));
                             order.setCustomerName(orderDTO.getCustomerName());
+                            order.setChannel(orderDTO.getChannel());
                             order.setOrder(orderDTO.getOrder());
                             order.setChannelOrder(orderDTO.getChannelOrder());
                             order.setCustomerPrice(orderDTO.getCustomerPrice());
@@ -312,7 +313,6 @@ public class OrderController extends BaseController {
                             order.setRealIncome(orderDTO.getRealIncome());
                             order.setRealOrder(orderDTO.getRealOrder());
                             order.setRealProfit(orderDTO.getRealProfit());
-                            order.setStatistic(orderDTO.getStatistic());
                             orderService.insert(order);
 
                             //跟用户模块对应
@@ -463,9 +463,6 @@ public class OrderController extends BaseController {
             if (orderD.getRealProfit() != null) {
                 realProfit = realProfit.add(orderD.getRealProfit());
             }
-            if (orderD.getStatistic() != null) {
-                statistic = statistic.add(orderD.getStatistic());
-            }
         }
         result.setOrder(order);
         result.setChannelOrder(channelOrder);
@@ -477,7 +474,6 @@ public class OrderController extends BaseController {
         result.setRealIncome(realIncome);
         result.setRealOrder(realOrder);
         result.setRealProfit(realProfit);
-        result.setStatistic(statistic);
         orders.add(result);
         //////////////////////////////////////生成Excel表///////////////////////////////////////////////
         InputStream is = null;
@@ -490,6 +486,7 @@ public class OrderController extends BaseController {
             OrderDTO orderDTO = new OrderDTO();
             orderDTO.setDataString(getDateStr(order1.getData()));
             orderDTO.setCustomerName(order1.getCustomerName());
+            orderDTO.setChannel(order1.getChannel());
             orderDTO.setOrder(order1.getOrder());
             orderDTO.setChannelOrder(order1.getChannelOrder());
             orderDTO.setCustomerPrice(order1.getCustomerPrice());
@@ -500,10 +497,8 @@ public class OrderController extends BaseController {
             orderDTO.setRealIncome(order1.getRealIncome());
             orderDTO.setRealOrder(order1.getRealOrder());
             orderDTO.setRealProfit(order1.getRealProfit());
-            orderDTO.setStatistic(order1.getStatistic());
             orderDTOS.add(orderDTO);
         }
-
 
         try {
             String templateName = "exportOrderTemplate.xls";

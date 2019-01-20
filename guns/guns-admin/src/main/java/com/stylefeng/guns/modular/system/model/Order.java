@@ -1,14 +1,13 @@
 package com.stylefeng.guns.modular.system.model;
 
-import java.io.Serializable;
-
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.activerecord.Model;
-import com.baomidou.mybatisplus.annotations.TableName;
-import java.io.Serializable;
 
 /**
  * <p>
@@ -37,6 +36,10 @@ public class Order extends Model<Order> {
      * 客户名称
      */
     private String customerName;
+    /**
+     * 渠道
+     */
+    private String channel;
     /**
      * 下单量级
      */
@@ -78,10 +81,6 @@ public class Order extends Model<Order> {
      */
     private BigDecimal realProfit;
     /**
-     * 我方统计
-     */
-    private BigDecimal statistic;
-    /**
      * 创建时间
      */
     private Date createTime;
@@ -121,6 +120,14 @@ public class Order extends Model<Order> {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
     public BigDecimal getOrder() {
@@ -203,13 +210,6 @@ public class Order extends Model<Order> {
         this.realProfit = realProfit;
     }
 
-    public BigDecimal getStatistic() {
-        return statistic;
-    }
-
-    public void setStatistic(BigDecimal statistic) {
-        this.statistic = statistic;
-    }
 
     public Date getCreateTime() {
         return createTime;
@@ -235,23 +235,23 @@ public class Order extends Model<Order> {
     @Override
     public String toString() {
         return "Order{" +
-        "id=" + id +
-        ", data=" + data +
-        ", customerId=" + customerId +
-        ", customerName=" + customerName +
-        ", order=" + order +
-        ", channelOrder=" + channelOrder +
-        ", customerPrice=" + customerPrice +
-        ", channelPrice=" + channelPrice +
-        ", income=" + income +
-        ", channelMoney=" + channelMoney +
-        ", profit=" + profit +
-        ", realIncome=" + realIncome +
-        ", realOrder=" + realOrder +
-        ", realProfit=" + realProfit +
-        ", statistic=" + statistic +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        "}";
+                "id=" + id +
+                ", data=" + data +
+                ", customerId=" + customerId +
+                ", customerName=" + customerName +
+                ", channel=" + channel +
+                ", order=" + order +
+                ", channelOrder=" + channelOrder +
+                ", customerPrice=" + customerPrice +
+                ", channelPrice=" + channelPrice +
+                ", income=" + income +
+                ", channelMoney=" + channelMoney +
+                ", profit=" + profit +
+                ", realIncome=" + realIncome +
+                ", realOrder=" + realOrder +
+                ", realProfit=" + realProfit +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                "}";
     }
 }

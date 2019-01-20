@@ -167,6 +167,7 @@ public class BankController extends BaseController {
 
         //新增银行卡流水表
         bankDeposit.setId(null);
+        bankDeposit.setBalance(bank.getBalance());
         bankDepositService.insert(bankDeposit);
         return SUCCESS_TIP;
     }
@@ -193,6 +194,7 @@ public class BankController extends BaseController {
 
         //新增银行卡流水表
         bankDeposit.setId(null);
+        bankDeposit.setBalance(bank.getBalance());
         bankDepositService.insert(bankDeposit);
         return SUCCESS_TIP;
     }

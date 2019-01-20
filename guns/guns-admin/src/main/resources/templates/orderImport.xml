@@ -8,17 +8,17 @@
             <section startRow="1" endRow="1">
                 <mapping row="1" col="0">order.dataString</mapping>
                 <mapping row="1" col="1">order.customerName</mapping>
-                <mapping row="1" col="2">order.order</mapping>
-                <mapping row="1" col="3">order.channelOrder</mapping>
-                <mapping row="1" col="4">order.customerPrice</mapping>
-                <mapping row="1" col="5">order.channelPrice</mapping>
-                <mapping row="1" col="6">order.income</mapping>
-                <mapping row="1" col="7">order.channelMoney</mapping>
-                <mapping row="1" col="8">order.profit</mapping>
-                <mapping row="1" col="9">order.realIncome</mapping>
-                <mapping row="1" col="10">order.realOrder</mapping>
-                <mapping row="1" col="11">order.realProfit</mapping>
-                <mapping row="1" col="12">order.statistic</mapping>
+                <mapping row="1" col="2">order.channel</mapping>
+                <mapping row="1" col="3">order.order</mapping>
+                <mapping row="1" col="4">order.channelOrder</mapping>
+                <mapping row="1" col="5">order.customerPrice</mapping>
+                <mapping row="1" col="6">order.channelPrice</mapping>
+                <mapping row="1" col="7">order.income</mapping>
+                <mapping row="1" col="8">order.channelMoney</mapping>
+                <mapping row="1" col="9">order.profit</mapping>
+                <mapping row="1" col="10">order.realIncome</mapping>
+                <mapping row="1" col="11">order.realOrder</mapping>
+                <mapping row="1" col="12">order.realProfit</mapping>
             </section>
             <loopbreakcondition>
                 <rowcheck offset="0">
