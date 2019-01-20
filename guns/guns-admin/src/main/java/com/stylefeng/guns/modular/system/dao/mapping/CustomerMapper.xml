@@ -4,17 +4,19 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.stylefeng.guns.modular.system.model.Customer">
-        <id column="id" property="id" />
-        <result column="name" property="name" />
-        <result column="phone" property="phone" />
-        <result column="balance" property="balance" />
-        <result column="updateTime" property="updateTime" />
-        <result column="createTime" property="createTime" />
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="phone" property="phone"/>
+        <result column="charge" property="charge"/>
+        <result column="cost" property="cost"/>
+        <result column="balance" property="balance"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="createTime" property="createTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, phone, balance, updateTime, createTime
+        id, name, phone,charge,cost,  balance, updateTime, createTime
     </sql>
 
 </mapper>
