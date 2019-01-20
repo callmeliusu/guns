@@ -17,6 +17,8 @@ Customer.initColumn = function () {
         {title: 'id', field: 'id', visible: true, align: 'center', valign: 'middle'},
         {title: '客户名称', field: 'name', visible: true, align: 'center', valign: 'middle', formatter: operateFormatter},
         {title: '手机号', field: 'phone', visible: true, align: 'center', valign: 'middle'},
+        {title: '预付金额', field: 'charge', visible: true, align: 'center', valign: 'middle'},
+        {title: '消耗金额', field: 'cost', visible: true, align: 'center', valign: 'middle'},
         {title: '余额', field: 'balance', visible: true, align: 'center', valign: 'middle'},
         {title: '创建时间', field: 'createTime', visible: true, align: 'center', valign: 'middle'},
         {title: '更新时间', field: 'updateTime', visible: true, align: 'center', valign: 'middle'}

@@ -8,7 +8,9 @@
             <section startRow="1" endRow="1">
                 <mapping row="1" col="0">customer.name</mapping>
                 <mapping row="1" col="1">customer.phone</mapping>
-                <mapping row="1" col="2">customer.balance</mapping>
+                <mapping row="1" col="2">customer.charge</mapping>
+                <mapping row="1" col="3">customer.cost</mapping>
+                <mapping row="1" col="4">customer.balance</mapping>
             </section>
             <loopbreakcondition>
                 <rowcheck offset="0">

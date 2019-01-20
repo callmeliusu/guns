@@ -138,6 +138,8 @@ public class CustomerController extends BaseController {
         if (CollectionUtils.isNotEmpty(customers)) {
             throw new Exception(customer.getName() + "已存在");
         }
+        customer.setCharge(new BigDecimal(0));
+        customer.setCost(new BigDecimal(0));
         customerService.insert(customer);
         return SUCCESS_TIP;
     }
@@ -190,6 +192,7 @@ public class CustomerController extends BaseController {
         //充值
         Customer charge = customerService.selectById(customer.getId());
         charge.setBalance(charge.getBalance().add(customer.getBalance()));
+        charge.setCharge(charge.getCharge().add(customer.getBalance()));
         customerService.updateById(charge);
 
         //记录客户充值记录
@@ -197,7 +200,6 @@ public class CustomerController extends BaseController {
         customerDeposit.setCustomerId(charge.getId());
         customerDeposit.setMoney(customer.getBalance());
         customerDepositService.insert(customerDeposit);
-
         return SUCCESS_TIP;
     }
 
@@ -242,6 +244,12 @@ public class CustomerController extends BaseController {
                 if (readStatus.isStatusOK()) {
                     if (CollectionUtils.isNotEmpty(importDtoList)) {
                         for (Customer customer : importDtoList) {
+                            if (customer.getCharge() == null) {
+                                customer.setCharge(new BigDecimal(0));
+                            }
+                            if (customer.getCost() == null) {
+                                customer.setCost(new BigDecimal(0));
+                            }
                             EntityWrapper<Customer> wrapper = new EntityWrapper<Customer>();
                             wrapper.eq("name", customer.getName());
                             List<Customer> customers = customerService.selectList(wrapper);

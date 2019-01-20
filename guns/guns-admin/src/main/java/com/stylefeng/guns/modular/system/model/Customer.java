@@ -3,11 +3,14 @@ package com.stylefeng.guns.modular.system.model;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.enums.IdType;
+
 import java.math.BigDecimal;
 import java.util.Date;
+
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 
 /**
@@ -25,8 +28,22 @@ public class Customer extends Model<Customer> {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
+
     private String name;
+
     private String phone;
+
+    /**
+     * 预付金额
+     */
+    private BigDecimal charge;
+
+    /**
+     * 消耗金额
+     */
+    private BigDecimal cost;
+
+
     private BigDecimal balance;
     /**
      * 更新时间
@@ -62,6 +79,22 @@ public class Customer extends Model<Customer> {
         this.phone = phone;
     }
 
+    public BigDecimal getCharge() {
+        return charge;
+    }
+
+    public void setCharge(BigDecimal charge) {
+        this.charge = charge;
+    }
+
+    public BigDecimal getCost() {
+        return cost;
+    }
+
+    public void setCost(BigDecimal cost) {
+        this.cost = cost;
+    }
+
     public BigDecimal getBalance() {
         return balance;
     }
@@ -94,12 +127,14 @@ public class Customer extends Model<Customer> {
     @Override
     public String toString() {
         return "Customer{" +
-        "id=" + id +
-        ", name=" + name +
-        ", phone=" + phone +
-        ", balance=" + balance +
-        ", updateTime=" + updateTime +
-        ", createTime=" + createTime +
-        "}";
+                "id=" + id +
+                ", name=" + name +
+                ", phone=" + phone +
+                ", charge=" + charge +
+                ", cost=" + cost +
+                ", balance=" + balance +
+                ", updateTime=" + updateTime +
+                ", createTime=" + createTime +
+                "}";
     }
 }
