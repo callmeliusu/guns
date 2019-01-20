@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IBankDepositService extends IService<BankDeposit> {
 
+    void updateName(String afterName, String beforeName);
 }

@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IOrderService extends IService<Order> {
 
+    void updateName(String afterName, String beforeName);
 }

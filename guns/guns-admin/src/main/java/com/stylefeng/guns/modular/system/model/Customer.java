@@ -45,6 +45,12 @@ public class Customer extends Model<Customer> {
 
 
     private BigDecimal balance;
+
+    private String email;
+
+    private String address;
+
+    private String touchName;
     /**
      * 更新时间
      */
@@ -103,6 +109,30 @@ public class Customer extends Model<Customer> {
         this.balance = balance;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTouchName() {
+        return touchName;
+    }
+
+    public void setTouchName(String touchName) {
+        this.touchName = touchName;
+    }
+
     public Date getUpdateTime() {
         return updateTime;
     }
@@ -129,6 +159,9 @@ public class Customer extends Model<Customer> {
         return "Customer{" +
                 "id=" + id +
                 ", name=" + name +
+                ", email=" + email +
+                ", address=" + address +
+                ", touchName=" + touchName +
                 ", phone=" + phone +
                 ", charge=" + charge +
                 ", cost=" + cost +

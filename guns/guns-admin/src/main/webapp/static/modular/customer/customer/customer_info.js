@@ -48,6 +48,9 @@ CustomerInfoDlg.collectData = function () {
         .set('id')
         .set('name')
         .set('phone')
+        .set('email')
+        .set('address')
+        .set('touchName')
         .set('balance')
         .set('updateTime')
         .set('createTime');

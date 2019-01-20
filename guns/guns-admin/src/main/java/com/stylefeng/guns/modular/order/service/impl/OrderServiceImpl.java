@@ -4,6 +4,7 @@ import com.stylefeng.guns.modular.system.model.Order;
 import com.stylefeng.guns.modular.system.dao.OrderMapper;
 import com.stylefeng.guns.modular.order.service.IOrderService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements IOrderService {
 
+    @Autowired
+    private OrderMapper orderMapper;
+
+    @Override
+    public void updateName(String afterName, String beforeName) {
+        orderMapper.updateName(afterName, beforeName);
+    }
 }

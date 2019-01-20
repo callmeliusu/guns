@@ -28,4 +28,8 @@
         id, data, customerId, customerName, channel, order, channelOrder, customerPrice, channelPrice, income, channelMoney, profit, realIncome, realOrder, realProfit, createTime, updateTime
     </sql>
 
+    <delete id="updateName">
+        UPDATE sys_order SET customerName = #{afterName} where customerName = #{beforeName}
+    </delete>
+
 </mapper>

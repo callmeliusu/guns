@@ -172,6 +172,7 @@ com/stylefeng/guns/core/flowable/GunsDefaultProcessDiagramGenerator$23.class
 com/stylefeng/guns/modular/system/warpper/DictWarpper.class
 com/stylefeng/guns/config/web/ShiroConfig.class
 com/stylefeng/guns/GunsServletInitializer.class
+com/stylefeng/guns/modular/system/model/BankDepositDTO.class
 com/stylefeng/guns/core/flowable/GunsDefaultProcessDiagramGenerator$1.class
 com/stylefeng/guns/core/common/constant/dictmap/MenuDict.class
 com/stylefeng/guns/core/common/constant/factory/PageFactory.class

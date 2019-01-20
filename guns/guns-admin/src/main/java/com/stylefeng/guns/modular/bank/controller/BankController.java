@@ -117,6 +117,18 @@ public class BankController extends BaseController {
     }
 
     /**
+     * 获取银行卡列表
+     */
+    @RequestMapping(value = "/bankNoList", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Bank> bankNoList(String bankNo) {
+        EntityWrapper<Bank> wrapper = new EntityWrapper<Bank>();
+        wrapper.like("bankNo", bankNo);
+        List<Bank> banks = bankService.selectList(wrapper);
+        return banks;
+    }
+
+    /**
      * 新增财务模块
      */
     @RequestMapping(value = "/add")
@@ -212,7 +224,15 @@ public class BankController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer bankId) {
+    public Object delete(@RequestParam Integer bankId) throws Exception {
+        Bank bank = bankService.selectById(bankId);
+        EntityWrapper<BankDeposit> wrapper = new EntityWrapper<BankDeposit>();
+        wrapper.like("bankNo", bank.getBankNo());
+        List<BankDeposit> bankDeposits = bankDepositService.selectList(wrapper);
+        if (CollectionUtils.isNotEmpty(bankDeposits)) {
+            throw new Exception("银行卡：" + bank.getBankNo() + "，存在流水数据数据，不允许删除");
+        }
+
         bankService.deleteById(bankId);
         return SUCCESS_TIP;
     }
@@ -226,6 +246,12 @@ public class BankController extends BaseController {
         if (StringUtils.isEmpty(bank.getBankNo())) {
             throw new Exception("请输入银行卡号");
         }
+        //查询一下是否存在流水，如果存在并且卡号发生变化则更新
+        Bank temp = bankService.selectById(bank.getId());
+        if (!bank.getBankNo().equals(temp.getBankNo())) {
+            bankDepositService.updateName(bank.getBankNo(), temp.getBankNo());
+        }
+
         if (bank.getBalance() == null) {
             bank.setBalance(new BigDecimal(0));
         }

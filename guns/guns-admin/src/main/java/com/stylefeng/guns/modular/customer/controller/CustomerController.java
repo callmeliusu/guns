@@ -4,8 +4,10 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.stylefeng.guns.core.base.controller.BaseController;
 import com.stylefeng.guns.core.log.LogObjectHolder;
 import com.stylefeng.guns.modular.customer.service.ICustomerService;
+import com.stylefeng.guns.modular.order.service.IOrderService;
 import com.stylefeng.guns.modular.system.model.Customer;
 import com.stylefeng.guns.modular.system.model.CustomerDeposit;
+import com.stylefeng.guns.modular.system.model.Order;
 import com.stylefeng.guns.modular.system.service.ICustomerDepositService;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -55,6 +57,9 @@ public class CustomerController extends BaseController {
 
     @Autowired
     private ICustomerDepositService customerDepositService;
+
+    @Autowired
+    private IOrderService orderService;
 
     /**
      * 跳转到客户模块首页
@@ -149,7 +154,16 @@ public class CustomerController extends BaseController {
      */
     @RequestMapping(value = "/delete")
     @ResponseBody
-    public Object delete(@RequestParam Integer customerId) {
+    public Object delete(@RequestParam Integer customerId) throws Exception {
+        //判断客户是否存在每日收支
+        Customer customer = customerService.selectById(customerId);
+        EntityWrapper<Order> wrapper = new EntityWrapper<Order>();
+        wrapper.like("customerName", customer.getName());
+        List<Order> orders = orderService.selectList(wrapper);
+        if (CollectionUtils.isNotEmpty(orders)) {
+            throw new Exception(customer.getName() + "存在每日收支数据，不允许删除");
+        }
+
         customerService.deleteById(customerId);
         return SUCCESS_TIP;
     }
@@ -173,6 +187,13 @@ public class CustomerController extends BaseController {
         if (StringUtils.isEmpty(customer.getName())) {
             throw new Exception("客户名称不能为空");
         }
+
+        //同时更新每日收支内的客户名称
+        Customer temp = customerService.selectById(customer.getId());
+        if (!customer.getName().equals(temp.getName())) {
+            orderService.updateName(customer.getName(), temp.getName());
+        }
+
         if (customer.getBalance() == null) {
             customer.setBalance(new BigDecimal(0));
         }
