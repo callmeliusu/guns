@@ -80,7 +80,7 @@ mybatis-plus:
 spring:
   profiles: dev
   datasource:
-    url: jdbc:mysql://rm-8vbx1q4nfnq3311iuro.mysql.zhangbei.rds.aliyuncs.com:3306/guns?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    url: jdbc:mysql://rm-8vbx1q4nfnq3311iu.mysql.zhangbei.rds.aliyuncs.com:3306/guns?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: guns
     password: Since2019
     db-name: guns
@@ -90,12 +90,12 @@ spring:
 guns:
   flowable:
     datasource:
-      url: jdbc:mysql://rm-8vbx1q4nfnq3311iuro.mysql.zhangbei.rds.aliyuncs.com:3306/guns_flowable?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+      url: jdbc:mysql://rm-8vbx1q4nfnq3311iu.mysql.zhangbei.rds.aliyuncs.com:3306/guns_flowable?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
       username: guns
       password: Since2019
   muti-datasource:
     default-dataSource-name: dataSourceGuns #默认的数据源名称
-    url: jdbc:mysql://rm-8vbx1q4nfnq3311iuro.mysql.zhangbei.rds.aliyuncs.com:3306/guns_flowable?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    url: jdbc:mysql://rm-8vbx1q4nfnq3311iu.mysql.zhangbei.rds.aliyuncs.com:3306/guns_flowable?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: guns
     password: Since2019
 

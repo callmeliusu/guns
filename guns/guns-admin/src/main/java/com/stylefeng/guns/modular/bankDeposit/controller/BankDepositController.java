@@ -8,7 +8,6 @@ import com.stylefeng.guns.modular.bankDeposit.service.IBankDepositService;
 import com.stylefeng.guns.modular.system.model.Bank;
 import com.stylefeng.guns.modular.system.model.BankDeposit;
 import com.stylefeng.guns.modular.system.model.BankDepositDTO;
-import com.stylefeng.guns.modular.system.model.OrderDTO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jxls.common.Context;
@@ -95,6 +94,7 @@ public class BankDepositController extends BaseController {
         if (end != null) {
             wrapper.le("data", end);
         }
+        wrapper.orderBy("data",true);
         BigDecimal income = new BigDecimal(0);
         BigDecimal pay = new BigDecimal(0);
         List<BankDeposit> bankDeposits = bankDepositService.selectList(wrapper);
@@ -137,6 +137,11 @@ public class BankDepositController extends BaseController {
             throw new Exception("请输入收入或者支出");
         }
 
+        if (bankDeposit.getData() == null){
+            //如果日期为空 填写为今天
+            bankDeposit.setData(new Date());
+        }
+
         //找到卡号对应的银行卡进行收入支出
         //判断银行卡是否已经存在
         EntityWrapper<Bank> wrapper = new EntityWrapper<Bank>();
@@ -160,12 +165,48 @@ public class BankDepositController extends BaseController {
         }
         //更新银行卡信息
         bankService.updateById(bank);
-
         //新增银行流水带上余额
         bankDeposit.setBalance(bank.getBalance());
         bankDepositService.insert(bankDeposit);
+        updateBankDepositBalance(bank);
         return SUCCESS_TIP;
     }
+
+    private void updateBankDepositBalance(Bank bank){
+        //更新银行下面所有流会余额信息
+        EntityWrapper<BankDeposit> depositEntityWrapper = new EntityWrapper<BankDeposit>();
+        depositEntityWrapper.eq("bankNo", bank.getBankNo());
+        List<String> orderbyList = new ArrayList<>(2);
+        orderbyList.add("data");
+        orderbyList.add("id");
+        depositEntityWrapper.orderDesc(orderbyList);
+        BigDecimal income = new BigDecimal(0);
+        BigDecimal pay = new BigDecimal(0);
+        List<BankDeposit> bankDeposits = bankDepositService.selectList(depositEntityWrapper);
+        if (bankDeposits != null && bankDeposits.size() > 1){
+            BigDecimal bdsBalance = new BigDecimal(0);
+            for (int i = 0 ;i < bankDeposits.size(); i++){
+                BankDeposit bds = bankDeposits.get(i);
+                if (i < 1){
+                    bdsBalance = bank.getBalance();
+                }else {
+                    bdsBalance = bank.getBalance().add(pay).subtract(income);
+                }
+                if (bds.getIncome() != null) {
+                    //收入
+                    income = income.add(bds.getIncome());
+                }
+                if (bds.getPay() != null) {
+                    //支出
+                    pay = pay.add(bds.getPay());
+                }
+                bds.setBalance(bdsBalance);
+            }
+            bankDepositService.updateBatchById(bankDeposits);
+        }
+    }
+
+
 
     /**
      * 删除财务流水模块
@@ -196,8 +237,8 @@ public class BankDepositController extends BaseController {
         }
         //更新银行卡信息
         bankService.updateById(bank);
-
         bankDepositService.deleteById(bankDepositId);
+        updateBankDepositBalance(bank);
         return SUCCESS_TIP;
     }
 

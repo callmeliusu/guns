@@ -25,10 +25,14 @@ Bank.initColumn = function () {
 };
 
 function operateFormatter(value, row, index) {
-    var url = encodeURI(Feng.ctxPath + '/bankDeposit'  + '?condition=' + value);
-    return [
-        '<a href = ' + url + '>' + value + '</a>'
-    ].join('');
+    if ('合计' != value) {
+        var url = encodeURI(Feng.ctxPath + '/bankDeposit'  + '?condition=' + value);
+        return [
+            '<a href = ' + url + '>' + value + '</a>'
+        ].join('');
+    }else{
+        return value;
+    }
 }
 /**
  * 检查是否选中
