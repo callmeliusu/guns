@@ -50,6 +50,7 @@ BankDepositInfoDlg.collectData = function () {
         .set('income')
         .set('pay')
         .set('data')
+        .set('description')
         .set('createTime')
         .set('updateTime');
 }

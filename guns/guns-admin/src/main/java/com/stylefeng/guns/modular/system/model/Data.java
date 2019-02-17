@@ -7,8 +7,8 @@ import java.util.List;
  * @date 2019/1/20 22:03
  */
 
-public class Data {
-    private List<Bank> value;
+public class Data<E> {
+    private List<E> value;
 
     private Integer code = 200;
 
@@ -16,11 +16,11 @@ public class Data {
 
     private String redirect = "";
 
-    public List<Bank> getValue() {
+    public List<E> getValue() {
         return value;
     }
 
-    public void setValue(List<Bank> value) {
+    public void setValue(List<E> value) {
         this.value = value;
     }
 

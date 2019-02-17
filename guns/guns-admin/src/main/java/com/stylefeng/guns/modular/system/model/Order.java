@@ -36,6 +36,11 @@ public class Order extends Model<Order> {
      * 客户名称
      */
     private String customerName;
+
+    /**
+     * 产品名称
+     */
+    private String productName;
     /**
      * 渠道
      */
@@ -132,6 +137,14 @@ public class Order extends Model<Order> {
 
     public BigDecimal getOrder() {
         return order;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public void setOrder(BigDecimal order) {
@@ -252,6 +265,7 @@ public class Order extends Model<Order> {
                 ", realProfit=" + realProfit +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", productName=" + productName +
                 "}";
     }
 }

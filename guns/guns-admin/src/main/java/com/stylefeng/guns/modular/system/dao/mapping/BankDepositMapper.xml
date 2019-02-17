@@ -12,11 +12,12 @@
         <result column="data" property="data"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
+        <result column="description" property="description"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, bankNo, income, pay,balance, data, createTime, updateTime
+        id, bankNo, income, pay,balance, data, createTime, updateTime,description
     </sql>
 
     <delete id="updateName">

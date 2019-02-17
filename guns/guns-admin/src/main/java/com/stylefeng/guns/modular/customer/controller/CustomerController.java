@@ -7,6 +7,7 @@ import com.stylefeng.guns.modular.customer.service.ICustomerService;
 import com.stylefeng.guns.modular.order.service.IOrderService;
 import com.stylefeng.guns.modular.system.model.Customer;
 import com.stylefeng.guns.modular.system.model.CustomerDeposit;
+import com.stylefeng.guns.modular.system.model.Data;
 import com.stylefeng.guns.modular.system.model.Order;
 import com.stylefeng.guns.modular.system.service.ICustomerDepositService;
 import org.apache.commons.collections.CollectionUtils;
@@ -86,6 +87,20 @@ public class CustomerController extends BaseController {
         model.addAttribute("item", customer);
         LogObjectHolder.me().set(customer);
         return PREFIX + "customer_edit.html";
+    }
+
+    /**
+     * 获取银行卡列表
+     */
+    @RequestMapping(value = "/customerSelectList", method = RequestMethod.GET)
+    @ResponseBody
+    public Data bankNoList(String name) {
+        EntityWrapper<Customer> wrapper = new EntityWrapper<Customer>();
+        wrapper.like("name", name);
+        List<Customer> customers = customerService.selectList(wrapper);
+        Data<Customer> data = new Data<Customer>();
+        data.setValue(customers);
+        return data;
     }
 
     /**

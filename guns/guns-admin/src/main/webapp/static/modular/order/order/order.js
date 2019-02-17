@@ -18,6 +18,7 @@ Order.initColumn = function () {
         {title: '日期', field: 'data', visible: true, align: 'center', valign: 'middle'},
         // {title: '客户id', field: 'customerId', visible: true, align: 'center', valign: 'middle'},
         {title: '客户名称', field: 'customerName', visible: true, align: 'center', valign: 'middle'},
+        {title: '产品名', field: 'productName', visible: true, align: 'center', valign: 'middle'},
         {title: '渠道', field: 'channel', visible: true, align: 'center', valign: 'middle'},
         {title: '下单量级', field: 'order', visible: true, align: 'center', valign: 'middle'},
         {title: '渠道量级', field: 'channelOrder', visible: true, align: 'center', valign: 'middle'},

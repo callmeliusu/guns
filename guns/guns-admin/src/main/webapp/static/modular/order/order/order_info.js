@@ -49,6 +49,7 @@ OrderInfoDlg.collectData = function () {
         .set('data')
         .set('customerId')
         .set('customerName')
+        .set('productName')
         .set('channel')
         .set('order')
         .set('channelOrder')

@@ -19,7 +19,8 @@ BankDeposit.initColumn = function () {
         {title: '收入', field: 'income', visible: true, align: 'center', valign: 'middle'},
         {title: '支出', field: 'pay', visible: true, align: 'center', valign: 'middle'},
         {title: '余额', field: 'balance', visible: true, align: 'center', valign: 'middle'},
-        {title: '日期', field: 'data', visible: true, align: 'center', valign: 'middle'}
+        {title: '日期', field: 'data', visible: true, align: 'center', valign: 'middle'},
+        {title: '明细', field: 'description', visible: true, align: 'center', valign: 'middle'}
     ];
 };
 

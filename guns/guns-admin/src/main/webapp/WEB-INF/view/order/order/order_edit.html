@@ -13,7 +13,21 @@
                             value="${item.data}"
                             clickFun="laydate({istime: false, format: 'YYYY-MM-DD'})" />
                     <!--<#input id="customerId" name="客户id" value="${item.customerId}" underline="true"/>-->
-                    <#input id="customerName" name="客户名称" value="${item.customerName}" underline="true"/>
+                    <!--<#input id="customerName" name="客户名称" value="${item.customerName}" underline="true"/>-->
+                    <label class="col-sm-3 control-label">客户名称</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="customerName" value="${item.customerName}">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                        <!-- /btn-group -->
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <#input id="productName" name="产品名" value="${item.productName}" underline="true"/>
                     <#input id="order" name="下单量级" value="${item.order}" underline="true"/>
                     <#input id="channelOrder" name="渠道量级" value="${item.channelOrder}" underline="true"/>
                     <#input id="customerPrice" name="客户单价" value="${item.customerPrice}" underline="true"/>
@@ -43,5 +57,21 @@
 
     </div>
 </div>
+<script src="${ctxPath}/static/js/plugins/suggest/bootstrap-suggest.min.js"></script>
 <script src="${ctxPath}/static/modular/order/order/order_info.js"></script>
+<script>
+    $('#customerName').bsSuggest({
+        url: Feng.ctxPath + '/customer/customerSelectList?name=',
+        getDataMethod: 'url',
+        effectiveFields: ['balance', 'name'],
+        effectiveFieldsAlias: {balance: '余额', bankNo: '名称'},
+        showHeader: false,
+        allowNoKeyword: true,
+        multiWord: false,
+        idField: 'id',
+        keyField: 'name'
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        $('#name').val(data.name);
+    });
+</script>
 @}

@@ -60,6 +60,11 @@ public class BankDeposit extends Model<BankDeposit> {
      */
     private Date updateTime;
 
+    /**
+     * 明细
+     */
+    private String description;
+
 
     public Integer getId() {
         return id;
@@ -125,6 +130,14 @@ public class BankDeposit extends Model<BankDeposit> {
         this.updateTime = updateTime;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     protected Serializable pkVal() {
         return this.id;
@@ -140,6 +153,7 @@ public class BankDeposit extends Model<BankDeposit> {
                 ", data=" + data +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", description=" + description +
                 "}";
     }
 }

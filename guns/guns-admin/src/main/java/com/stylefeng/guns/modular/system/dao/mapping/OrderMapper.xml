@@ -21,11 +21,12 @@
         <result column="realProfit" property="realProfit"/>
         <result column="createTime" property="createTime"/>
         <result column="updateTime" property="updateTime"/>
+        <result column="productName" property="productName"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, data, customerId, customerName, channel, order, channelOrder, customerPrice, channelPrice, income, channelMoney, profit, realIncome, realOrder, realProfit, createTime, updateTime
+        id, data, customerId, customerName, channel, order, channelOrder, customerPrice, channelPrice, income, channelMoney, profit, realIncome, realOrder, realProfit, createTime, updateTime,productName
     </sql>
 
     <delete id="updateName">

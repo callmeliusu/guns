@@ -127,7 +127,7 @@ public class BankController extends BaseController {
         wrapper.like("bankNo", bankNo);
         List<Bank> banks = bankService.selectList(wrapper);
 
-        Data data = new Data();
+        Data<Bank> data = new Data<Bank>();
         data.setValue(banks);
         return data;
     }
