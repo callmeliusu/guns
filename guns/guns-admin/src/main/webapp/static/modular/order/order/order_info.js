@@ -210,14 +210,14 @@ $(function () {
         var realIncome =  $("#realIncome").val();
         var realOrder =  $("#realOrder").val();
         if(!isNaN(realIncome) && !isNaN(realOrder)){
-            $("#realProfit").val(realOrder - realIncome);
+            $("#realProfit").val(realIncome  - realOrder);
         }
     });
     $("#realOrder").change(function(){
         var realIncome =  $("#realIncome").val();
         var realOrder =  $("#realOrder").val();
         if(!isNaN(realIncome) && !isNaN(realOrder)){
-            $("#realProfit").val(realOrder - realIncome);
+            $("#realProfit").val(realIncome  - realOrder;
         }
     });
 
