@@ -217,7 +217,7 @@ $(function () {
         var realIncome =  $("#realIncome").val();
         var realOrder =  $("#realOrder").val();
         if(!isNaN(realIncome) && !isNaN(realOrder)){
-            $("#realProfit").val(realIncome  - realOrder;
+            $("#realProfit").val(realIncome  - realOrder);
         }
     });
 
