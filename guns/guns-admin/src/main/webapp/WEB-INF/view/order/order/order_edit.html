@@ -96,12 +96,15 @@
         allowNoKeyword: true,
         multiWord: true,
         idField: 'id',
-        keyFields: ['channel', 'channelPrice', 'channelMoney']
-    }).on('onSetSelectValue', function (e, result) {
-        console.log("e"+ e);
-        console.log("result"+ result);
-        var data = result.value;
-        console.log("data"+ data);
+        keyFields: ['channel', 'channelPrice', 'channelMoney'],
+        processData: function (json) {
+            var data = { value: [] };
+            $.each(json.value, function (i, r) {
+                data.value.push({ channel: r.channel, channelPrice: r.channelPrice, channelMoney: r.channelMoney })
+            })
+            return data;
+        }
+    }).on('onSetSelectValue', function (e, result, data) {
         $('#channel').val(data.channel);
         $('#channelPrice').val(data.channelPrice);
         $('#channelMoney').val(data.channelMoney);
