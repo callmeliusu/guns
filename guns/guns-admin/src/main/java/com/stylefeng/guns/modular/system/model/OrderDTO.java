@@ -34,6 +34,10 @@ public class OrderDTO implements Serializable {
      */
     private String customerName;
     /**
+     * 产品名称
+     */
+    private String productName;
+    /**
      * 渠道
      */
     private String channel;
@@ -109,6 +113,14 @@ public class OrderDTO implements Serializable {
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public String getChannel() {

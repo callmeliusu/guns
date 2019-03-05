@@ -14,17 +14,16 @@
                     <!--<#input id="customerId" name="客户id" underline="true"/>-->
 
                     <!--<#input id="customerName" name="客户名称" underline="true"/>-->
-                   <label class="col-sm-3 control-label">客户名称</label>
-                   <div class="input-group">
-                       <input type="text" class="form-control" id="customerName">
-                       <div class="input-group-btn">
-                           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                               <span class="caret"></span>
-                           </button>
-                           <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                           </ul>
-                       </div>
-                       <!-- /btn-group -->
+                    <label class="col-sm-3 control-label">客户名称</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="customerName">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
                     </div>
                     <div class="hr-line-dashed"></div>
 
@@ -37,7 +36,20 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <#input id="channel" name="渠道" underline="true"/>
+
+                    <label class="col-sm-3 control-label">渠道</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="channel">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <!--<#input id="channel" name="渠道" underline="true"/>-->
                     <#input id="channelMoney" name="渠道金额" underline="true"/>
                     <#input id="profit" name="利润" underline="true"/>
                     <#input id="realIncome" name="实际收入" underline="true"/>
@@ -73,6 +85,23 @@
         keyField: 'name'
     }).on('onSetSelectValue', function (e, keyword, data) {
         $('#name').val(data.name);
+    });
+
+    $('#channel').bsSuggest({
+        url: Feng.ctxPath + '/channel/channelList?channel=',
+        getDataMethod: 'url',
+        effectiveFields: ['channel', 'channelPrice', 'channelMoney'],
+        effectiveFieldsAlias: {channel: '渠道', channelPrice: '渠道单价', channelMoney: '渠道金额'},
+        showHeader: false,
+        allowNoKeyword: true,
+        multiWord: false,
+        idField: 'id',
+        keyFields: ['channel', 'channelPrice', 'channelMoney']
+    }).on('onSetSelectValue', function (e, keyword, data) {
+        console.log($('#channel'));
+        $('#channel').val(data.channel);
+        $('#channelPrice').val(data.channelPrice);
+        $('#channelMoney').val(data.channelMoney);
     });
 </script>
 

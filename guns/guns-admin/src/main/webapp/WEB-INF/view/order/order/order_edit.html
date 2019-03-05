@@ -36,7 +36,20 @@
                 </div>
 
                 <div class="col-sm-6">
-                    <#input id="channel" name="渠道" value="${item.channel}" underline="true"/>
+                    <label class="col-sm-3 control-label">渠道</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="channel" value="${item.channel}" >
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+
+                    <!--<#input id="channel" name="渠道" value="${item.channel}" underline="true"/>-->
                     <#input id="channelMoney" name="渠道金额" value="${item.channelMoney}" underline="true"/>
                     <#input id="profit" name="利润" value="${item.profit}" underline="true"/>
                     <#input id="realIncome" name="实际收入" value="${item.realIncome}" underline="true"/>
@@ -72,6 +85,26 @@
         keyField: 'name'
     }).on('onSetSelectValue', function (e, keyword, data) {
         $('#name').val(data.name);
+    });
+
+    $('#channel').bsSuggest({
+        url: Feng.ctxPath + '/channel/channelList?channel=',
+        getDataMethod: 'url',
+        effectiveFields: ['channel', 'channelPrice', 'channelMoney'],
+        effectiveFieldsAlias: {channel: '渠道', channelPrice: '渠道单价', channelMoney: '渠道金额'},
+        showHeader: false,
+        allowNoKeyword: true,
+        multiWord: true,
+        idField: 'id',
+        keyFields: ['channel', 'channelPrice', 'channelMoney']
+    }).on('onSetSelectValue', function (e, result) {
+        console.log("e"+ e);
+        console.log("result"+ result);
+        var data = result.value;
+        console.log("data"+ data);
+        $('#channel').val(data.channel);
+        $('#channelPrice').val(data.channelPrice);
+        $('#channelMoney').val(data.channelMoney);
     });
 </script>
 @}

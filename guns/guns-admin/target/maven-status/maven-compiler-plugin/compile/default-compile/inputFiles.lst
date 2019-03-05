@@ -3,6 +3,7 @@
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/modular/flowable/controller/ProcessController.java
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/modular/system/service/IDeptService.java
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/core/aop/LogAop.java
+/Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/modular/system/model/Data.java
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/config/properties/GunsProperties.java
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/core/common/constant/factory/PageFactory.java
 /Users/lyd/guns/guns/guns-admin/src/main/java/com/stylefeng/guns/core/common/exception/InvalidKaptchaException.java

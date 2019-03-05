@@ -76,4 +76,15 @@ public class SwaggerConfig {
                 .paths(PathSelectors.any())
                 .build();
     }
+
+    @Bean
+    public Docket channelApi() {
+        String title = "渠道模块";
+        return new Docket(DocumentationType.SWAGGER_2)
+                .groupName(title)
+                .select()
+                .paths(PathSelectors.regex("/channel/.*"))
+                .paths(PathSelectors.any())
+                .build();
+    }
 }

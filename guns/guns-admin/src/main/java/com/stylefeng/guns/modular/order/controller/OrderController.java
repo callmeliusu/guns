@@ -327,6 +327,7 @@ public class OrderController extends BaseController {
                             Order order = new Order();
                             order.setData(string2Date(orderDTO.getDataString()));
                             order.setCustomerName(orderDTO.getCustomerName());
+                            order.setProductName(orderDTO.getProductName());
                             order.setChannel(orderDTO.getChannel());
                             order.setOrder(orderDTO.getOrder());
                             order.setChannelOrder(orderDTO.getChannelOrder());
@@ -511,6 +512,7 @@ public class OrderController extends BaseController {
             OrderDTO orderDTO = new OrderDTO();
             orderDTO.setDataString(getDateStr(order1.getData()));
             orderDTO.setCustomerName(order1.getCustomerName());
+            orderDTO.setProductName(order1.getProductName());
             orderDTO.setChannel(order1.getChannel());
             orderDTO.setOrder(order1.getOrder());
             orderDTO.setChannelOrder(order1.getChannelOrder());
